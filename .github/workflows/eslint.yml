@@ -1,0 +1,23 @@
+name: Lint Code Base
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Run ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      name: Check out source code
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16' # Use the node version compatible with your project
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Run ESLint
+      run: npx eslint . --ext .js,.jsx,.ts,.tsx
