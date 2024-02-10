@@ -1,0 +1,25 @@
+name: Lint Feature and Bugfix Branches
+
+on:
+    push:
+        branches-ignore:
+            - main
+            - dev
+    pull_request:
+        branches-ignore:
+            - main
+            - dev
+
+jobs:
+    build:
+        name: Lint
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4 # Updated to the latest version
+
+            - name: Install Dependencies
+              run: npm install
+
+            - name: Run ESLint
+              run: npx eslint .
