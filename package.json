@@ -1,16 +1,23 @@
 {
-  "dependencies": {
-    "latest": "0.2.0"
-  },
-  "devDependencies": {
-    "eslint": "8.56.0"
-  },
   "name": "div4io-rotator",
   "description": "Div4.io Foundry Vtt Module that provides utilities for Game Master and Players to quickly rotate both tiles and token en masse.",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npx eslint src/",
+    "lint-fix": "npx eslint src/ --fix",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile-templates": "handlebars src/templates -f src/templates.js",
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "eslint": "8.56.0",
+    "eslint-config-prettier": "9.1.0",
+    "prettier": "3.2.5",
+    "terser": "5.27.0",
+    "terser-webpack-plugin": "5.3.10",
+    "webpack": "5.90.1",
+    "webpack-cli": "5.1.4"
   },
   "repository": {
     "type": "git",
@@ -22,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/Division4Studios/div4io-rotator/issues"
   },
-  "homepage": "https://github.com/Division4Studios/div4io-rotator#readme"
+  "homepage": "https://github.com/Division4Studios/div4io-rotator#readme",
+  "dependencies": {
+    "handlebars": "4.7.8"
+  }
 }

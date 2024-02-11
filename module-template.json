@@ -1,13 +1,21 @@
 {
     "id": "div4io-rotator",
-    "name": "div4io-rotator",
     "author": "Galag'r",
     "title": "Div4.io Rotator",
     "license": "MIT License",
     "description": "A simple Foundry VTT Module designed to provide utilities for rotating tokens and tiles en masse.",
-    "version": "0.0.1",
-    "minimumCoreVersion": "11.307",
+    "version": "VERSION",
+	  "download": "https://github.com/Division4Studios/div4io-rotator/VERSION/div4io-rotator.zip",
+    "manifest": "https://github.com/Division4Studios/div4io-rotator/releases/latest/download/module.json",
+    "readme": "https://github.com/Division4Studios/div4io-rotator/blob/main/README.md",
+    "changelog": "https://github.com/Division4Studios/div4io-rotator/blob/main/CHANGELOG.md",
+    "url": "https://github.com/Division4Studios/div4io-rotator",
+    "minimumCoreVersion": "11.315",
     "compatibleCoreVersion": "11",
+    "compatibility": {
+      "minimum": "11.315",
+      "verified": 11
+    },
     "authors": [
       {
       "name": "Div4.io (Galag'r)",
@@ -24,10 +32,5 @@
     ],
     "esmodules": [
       "dist/main.js"
-    ],
-    "compatibility": {
-      "minimum": "11",
-      "maximum": "11",
-      "verified": "11"
-    }
+    ]
   }
