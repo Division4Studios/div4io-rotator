@@ -1,3 +1,9 @@
+import Handlebars from 'handlebars';
+
+let template = Handlebars.compile("Hello {{name}}");
+let result = template({name: "World"});
+console.log(result);  // Outputs: "Hello World"
+
 console.log("Hello World! This code runs immediately when the file is loaded.");
 
 Hooks.on("init", function() {

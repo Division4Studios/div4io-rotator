@@ -7,6 +7,7 @@
     "lint": "npx eslint src/",
     "lint-fix": "npx eslint src/ --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
+    "compile-templates": "handlebars src/templates -f src/templates.js",
     "build": "webpack"
   },
   "devDependencies": {
@@ -28,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/Division4Studios/div4io-rotator/issues"
   },
-  "homepage": "https://github.com/Division4Studios/div4io-rotator#readme"
+  "homepage": "https://github.com/Division4Studios/div4io-rotator#readme",
+  "dependencies": {
+    "handlebars": "4.7.8"
+  }
 }
