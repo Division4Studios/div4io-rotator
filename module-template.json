@@ -23,13 +23,6 @@
       "discord": "https://discord.gg/E5FSTTZPnz"
       }
     ],
-    "languages": [
-      {
-        "lang": "en",
-        "name": "English",
-        "path": "lang/en.json"
-      }
-    ],
     "esmodules": [
       "dist/main.js"
     ]
