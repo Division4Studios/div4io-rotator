@@ -22,7 +22,7 @@
     "systems": [],
     "requires": []
   },
-  "esmodules": [
+  "scripts": [
     "src/main.js"
   ],
   "url": "#{URL}#",
