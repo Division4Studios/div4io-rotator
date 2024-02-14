@@ -33,17 +33,23 @@ document.addEventListener('keyup', event => {
 Hooks.on('canvasReady', () => {
   // Listen for the mousemove event to rotate the token
   canvas.app.view.addEventListener('mousemove', event => {
-    if (ctrlDown && canvas.tokens.controlled.length > 0) {
-      // Get the first controlled token
-      let token = canvas.tokens.controlled[0];
+    if (ctrlDown) {
+      // Loop through all controlled tokens and tiles
+      for (let item of [...canvas.tokens.controlled, ...canvas.tiles.controlled]) {
+        // Calculate the angle between the item and the cursor
+        let dx = canvas.mousePosition.x - item.center.x;
+        let dy = canvas.mousePosition.y - item.center.y;
+        let angle = Math.atan2(dy, dx);
+        console.log(angle);
+        console.log(dx + " " + dy + " " + ((angle * (180/Math.PI) + 90)));
 
-      // Calculate the angle between the token and the cursor
-      let dx = event.clientX - token.center.x;
-      let dy = event.clientY - token.center.y;
-      let angle = Math.atan2(dy, dx);
-
-      // Convert the angle to degrees and rotate the token
-      token.update({rotation: angle * (180 / Math.PI)});
+        // Convert the angle to degrees, make it go clockwise, and adjust it to start from the top
+        let rotation = angle * (180 / Math.PI) + 90;
+        if (rotation < 0) {
+          rotation += 360;
+        }
+        item.document.update({rotation: rotation});
+      }
     }
   });
 });
