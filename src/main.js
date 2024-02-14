@@ -32,7 +32,7 @@ document.addEventListener('keyup', event => {
 
 Hooks.on('canvasReady', () => {
   // Listen for the mousemove event to rotate the token
-  canvas.app.view.addEventListener('mousemove', event => {
+  canvas.app.view.addEventListener('mousemove', () => {
     if (ctrlDown) {
       // Loop through all controlled tokens and tiles
       for (let item of [...canvas.tokens.controlled, ...canvas.tiles.controlled]) {
