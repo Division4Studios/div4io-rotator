@@ -23,20 +23,7 @@
     "requires": []
   },
   "esmodules": [
-    "scripts/module.js"
-  ],
-  "scripts": [
-    "scripts/lib/lib.js"
-  ],
-  "styles": [
-    "styles/module.css"
-  ],
-  "languages": [
-    {
-      "lang": "en",
-      "name": "English",
-      "path": "languages/en.json"
-    }
+    "src/main.js"
   ],
   "url": "#{URL}#",
   "manifest": "#{MANIFEST}#",
