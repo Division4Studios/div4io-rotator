@@ -2,7 +2,6 @@
   "id": "div4io-rotator",
   "author": "Galag'r",
   "title": "Div4.io Rotator",
-  "license": "MIT License",
   "description": "A simple Foundry VTT Module designed to provide utilities for rotating tokens and tiles en masse.",
   "version": "#{VERSION}#",
   "library": "false",
