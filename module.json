@@ -23,7 +23,7 @@
     "requires": []
   },
   "esmodules": [
-    "dist/main.js"
+    "dist/div4iorotator.js"
   ],
   "url": "#{URL}#",
   "manifest": "#{MANIFEST}#",

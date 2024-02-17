@@ -3,7 +3,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: './src/main.js',
+  entry: './src/div4iorotator.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -22,7 +22,7 @@ module.exports = {
     ],
   },
   output: {
-    filename: 'main.js',
+    filename: 'div4iorotator.js',
     path: path.resolve(__dirname, 'dist'),
   },
 };
