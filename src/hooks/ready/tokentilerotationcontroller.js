@@ -9,8 +9,6 @@
 import Div4LoggerModule from "../../div4loggermodule.js";
 
 const TokenTileRotationController = (function() {
-  // Initialize Required Modules
-  Div4LoggerModule();
   // Variables
   const currentLogLevel = Div4LoggerModule.LogLevel.INFO; // Current log level
   Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Current log level is set to ${currentLogLevel}`, currentLogLevel);

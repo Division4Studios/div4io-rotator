@@ -10,7 +10,7 @@ Hooks.on("init", function() {
 
 // The 'ready' hook is triggered when the core initialization is ready and game data is available
 Hooks.on("ready", function() {
-    // Call the initializeEventListeners function from the TokenTileRotationController
+  // Initialize the TokenTileRotationController
     TokenTileRotationController.initializeEventListeners();
 });
 
