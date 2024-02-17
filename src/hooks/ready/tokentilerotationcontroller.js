@@ -36,7 +36,7 @@ const TokenTileRotationController = (function() {
 
       // Update the rotation of the item
       item.document.update({ rotation: rotation });
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Updated rotation of item to ${rotation}`, currentLogLevel);
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Updated rotation of item to ${rotation}`, currentLogLevel);
     } catch (error) {
       Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in updateTileAndTokenRotation: ${error}`, currentLogLevel);
     }
@@ -47,7 +47,7 @@ const TokenTileRotationController = (function() {
       // If the key pressed is 'Control', set the flag to true and update rotation for controlled items
       if (event.key === 'Control') {
         ctrlDown = true;
-        Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Control key pressed. ctrlDown set to ${ctrlDown}`, currentLogLevel);
+        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Control key pressed. ctrlDown set to ${ctrlDown}`, currentLogLevel);
         updateRotationForControlledItems();
       }
     } catch (error) {
@@ -60,7 +60,7 @@ const TokenTileRotationController = (function() {
       // If the key released is 'Control', set the flag to false
       if (event.key === 'Control') {
         ctrlDown = false;
-        Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Control key released. ctrlDown set to ${ctrlDown}`, currentLogLevel);
+        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Control key released. ctrlDown set to ${ctrlDown}`, currentLogLevel);
       }
     } catch (error) {
       Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in keyup event listener: ${error}`, currentLogLevel);
@@ -71,7 +71,7 @@ const TokenTileRotationController = (function() {
     try {
       // If the control key is held down, update rotation for controlled items
       if (ctrlDown) {
-        Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Mouse moved with control key down. Updating rotation for controlled items.`, currentLogLevel);
+        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Mouse moved with control key down. Updating rotation for controlled items.`, currentLogLevel);
         updateRotationForControlledItems();
       }
     } catch (error) {
@@ -81,7 +81,7 @@ const TokenTileRotationController = (function() {
 
   function updateRotationForControlledItems() {
     for (let item of [...canvas.tokens.controlled, ...canvas.tiles.controlled]) {
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Updating rotation for controlled item.`, currentLogLevel);
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Updating rotation for controlled item.`, currentLogLevel);
       updateTileAndTokenRotation(item);
     }
   }
