@@ -45,7 +45,7 @@ const TokenTileRotationController = (function() {
   function handleActivationKeyPressed(event) {
     try {
       // If the key pressed is 'Control', set the flag to true and update rotation for controlled items
-      if (event.key === 'Control') {
+      if (event.key === 'z') {
         zKeyDown = true;
         Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `z key pressed. zKeyDown set to ${zKeyDown}`, currentLogLevel);
         updateRotationForControlledItems();
@@ -58,7 +58,7 @@ const TokenTileRotationController = (function() {
   function handleActivationKeyReleased(event) {
     try {
       // If the key released is 'Control', set the flag to false
-      if (event.key === 'Control') {
+      if (event.key === 'z') {
         zKeyDown = false;
         Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `z key released. zKeyDown set to ${zKeyDown}`, currentLogLevel);
       }
