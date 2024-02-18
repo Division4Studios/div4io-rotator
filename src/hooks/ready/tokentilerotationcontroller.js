@@ -42,7 +42,7 @@ const TokenTileRotationController = (function() {
     }
   }
 
-  function handleControlKeyPressed(event) {
+  function handleActivationKeyPressed(event) {
     try {
       // If the key pressed is 'Control', set the flag to true and update rotation for controlled items
       if (event.key === 'Control') {
@@ -55,7 +55,7 @@ const TokenTileRotationController = (function() {
     }
   }
 
-  function handleControlKeyReleased(event) {
+  function handleActivationKeyReleased(event) {
     try {
       // If the key released is 'Control', set the flag to false
       if (event.key === 'Control') {
@@ -91,8 +91,8 @@ const TokenTileRotationController = (function() {
   function initializeEventListeners() {
     try {
       // Add event listeners for 'keydown', 'keyup', and 'mousemove' events
-      document.addEventListener('keydown', handleControlKeyPressed);
-      document.addEventListener('keyup', handleControlKeyReleased);
+      document.addEventListener('keydown', handleActivationKeyPressed);
+      document.addEventListener('keyup', handleActivationKeyReleased);
       canvas.app.view.addEventListener('mousemove', handleMouseMove);
       Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Event listeners initialized.`, currentLogLevel);
 
