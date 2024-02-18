@@ -1,5 +1,5 @@
 /**
- * @file tokentilerotationcontroller.js.js
+ * @file tokentilerotationcontroller.js
  * @description This file contains a function to update the rotation of a tile or token based on the cursor position.
  * It also sets up event listeners to trigger the rotation update when the control key is held down and the mouse is moved.
  */
