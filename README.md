@@ -13,10 +13,6 @@ Once a token or tile is selected, press and hold the control key. As you move yo
 
 Release the control key to stop the rotation. If you have multiple tokens or tiles selected, they will all rotate in sync, maintaining their relative orientations to each other.
 
-## Contributing
-
-Contributions are welcome! Please read the contributing guidelines before getting started.
-
 ## License
 
 This project is licensed under the terms of the MIT license.
