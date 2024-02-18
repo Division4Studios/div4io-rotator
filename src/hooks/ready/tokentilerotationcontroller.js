@@ -1,7 +1,7 @@
 /**
  * @file tokentilerotationcontroller.js
  * @description This file contains a function to update the rotation of a tile or token based on the cursor position.
- * It also sets up event listeners to trigger the rotation update when the control key is held down and the mouse is moved.
+ * It also sets up event listeners to trigger the rotation update when the z key is held down and the mouse is moved.
  */
 
 /* global canvas */
@@ -13,8 +13,8 @@ const TokenTileRotationController = (function() {
   const currentLogLevel = Div4LoggerModule.LogLevel.INFO; // Current log level
   Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Current log level is set to ${currentLogLevel}`, currentLogLevel);
   
-  let ctrlDown = false; // Flag to check if control key is down
-  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Initial ctrlDown value is set to ${ctrlDown}`, currentLogLevel);
+  let zKeyDown = false; // Flag to check if z key is down
+  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Initial zKeyDown value is set to ${zKeyDown}`, currentLogLevel);
 
   // Log a message to the console when the core initialization is ready and game data is available
   Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, "Initializing the TokenTile TokenTileRotationController....", currentLogLevel);
@@ -46,8 +46,8 @@ const TokenTileRotationController = (function() {
     try {
       // If the key pressed is 'Control', set the flag to true and update rotation for controlled items
       if (event.key === 'Control') {
-        ctrlDown = true;
-        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Control key pressed. ctrlDown set to ${ctrlDown}`, currentLogLevel);
+        zKeyDown = true;
+        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `z key pressed. zKeyDown set to ${zKeyDown}`, currentLogLevel);
         updateRotationForControlledItems();
       }
     } catch (error) {
@@ -59,8 +59,8 @@ const TokenTileRotationController = (function() {
     try {
       // If the key released is 'Control', set the flag to false
       if (event.key === 'Control') {
-        ctrlDown = false;
-        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Control key released. ctrlDown set to ${ctrlDown}`, currentLogLevel);
+        zKeyDown = false;
+        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `z key released. zKeyDown set to ${zKeyDown}`, currentLogLevel);
       }
     } catch (error) {
       Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in keyup event listener: ${error}`, currentLogLevel);
@@ -69,9 +69,9 @@ const TokenTileRotationController = (function() {
 
   function handleMouseMove() {
     try {
-      // If the control key is held down, update rotation for controlled items
-      if (ctrlDown) {
-        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Mouse moved with control key down. Updating rotation for controlled items.`, currentLogLevel);
+      // If the z key is held down, update rotation for controlled items
+      if (zKeyDown) {
+        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Mouse moved with z key down. Updating rotation for controlled items.`, currentLogLevel);
         updateRotationForControlledItems();
       }
     } catch (error) {
