@@ -11,93 +11,115 @@ import Div4LoggerModule from "../../div4loggermodule.js";
 const TokenTileRotationController = (function() {
   // Variables
   const currentLogLevel = Div4LoggerModule.LogLevel.INFO; // Current log level
-  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Current log level is set to ${currentLogLevel}`, currentLogLevel);
+  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Current log level is set to ${currentLogLevel}`);
   
   let zKeyDown = false; // Flag to check if z key is down
-  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Initial zKeyDown value is set to ${zKeyDown}`, currentLogLevel);
+  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Initial zKeyDown value is set to ${zKeyDown}`);
 
   // Log a message to the console when the core initialization is ready and game data is available
-  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, "Initializing the TokenTile TokenTileRotationController....", currentLogLevel);
+  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, "Initializing the TokenTile TokenTileRotationController....");
 
-  // Functions
-  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, "Defining updateTileAndTokenRotation function...", currentLogLevel);
-  function updateTileAndTokenRotation(item) {
+  // Function to update the rotation of the item's mesh
+  function updateTileAndTokenMeshRotation(item) {
     try {
-      // Calculate the angle between the item and the cursor
+      let rotation = calculateRotation(item);
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Calculated rotation of item to ${rotation}`);
+      item.mesh.rotation = rotation; 
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Updated rotation of item to ${rotation}`);
+    } catch (error) {
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in updateTileAndTokenMeshRotation: ${error}`);
+    }
+  }
+
+  // Function to update the rotation of the item's document
+  function updateTileAndTokenDocumentRotation(item) {
+    try {
+      let rotation = calculateRotation(item);
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Calculated rotation of item to ${rotation}`);
+      item.document.update({rotation: rotation});
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Updated rotation of item to ${rotation}`);
+    } catch (error) {
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in updateTileAndTokenDocumentRotation: ${error}`);
+    }
+  }
+
+  // Function to calculate the rotation of the item
+  function calculateRotation(item) {
+    try {
       let dx = canvas.mousePosition.x - item.center.x;
       let dy = canvas.mousePosition.y - item.center.y;
       let angle = Math.atan2(dy, dx);
-
-      // Convert the angle to degrees, make it go clockwise, and adjust it to start from the top
       let rotation = angle * (180 / Math.PI) + 90;
       if (rotation < 0) {
         rotation += 360;
       }
-
-      // Update the rotation of the item
-      item.document.update({ rotation: rotation });
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Updated rotation of item to ${rotation}`, currentLogLevel);
-    } catch (error) {
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in updateTileAndTokenRotation: ${error}`, currentLogLevel);
+      return rotation;
+    }
+    catch (error) {
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in calculateRotation: ${error}`);
     }
   }
-
+  
+  // Event handlers
   function handleActivationKeyPressed(event) {
     try {
-      // If the key pressed is 'Control', set the flag to true and update rotation for controlled items
       if (event.key === 'z') {
         zKeyDown = true;
-        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `z key pressed. zKeyDown set to ${zKeyDown}`, currentLogLevel);
-        updateRotationForControlledItems();
+        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `z key pressed. zKeyDown set to ${zKeyDown}`);
+        updateMeshRotationForControlledItems();
       }
     } catch (error) {
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in keydown event listener: ${error}`, currentLogLevel);
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in keydown event listener: ${error}`);
     }
   }
 
   function handleActivationKeyReleased(event) {
     try {
-      // If the key released is 'Control', set the flag to false
       if (event.key === 'z') {
         zKeyDown = false;
-        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `z key released. zKeyDown set to ${zKeyDown}`, currentLogLevel);
+        updateDocumentRotationForControlledItems();
+        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `z key released. zKeyDown set to ${zKeyDown}`);
       }
     } catch (error) {
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in keyup event listener: ${error}`, currentLogLevel);
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in keyup event listener: ${error}`);
     }
   }
 
   function handleMouseMove() {
     try {
-      // If the z key is held down, update rotation for controlled items
       if (zKeyDown) {
-        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Mouse moved with z key down. Updating rotation for controlled items.`, currentLogLevel);
-        updateRotationForControlledItems();
+        Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Mouse moved with z key down. Updating rotation for controlled items.`);
+        updateMeshRotationForControlledItems();
       }
     } catch (error) {
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in mousemove event listener: ${error}`, currentLogLevel);
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in mousemove event listener: ${error}`);
     }
   }
 
-  function updateRotationForControlledItems() {
+  // Functions to update rotation for controlled items
+  function updateMeshRotationForControlledItems() {
     for (let item of [...canvas.tokens.controlled, ...canvas.tiles.controlled]) {
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Updating rotation for controlled item.`, currentLogLevel);
-      updateTileAndTokenRotation(item);
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Updating mesh rotation for controlled item.`);
+      updateTileAndTokenMeshRotation(item);
     }
   }
 
-  // Event Listeners
-  Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, "Defining initializeEventListeners function...", currentLogLevel);
+  function updateDocumentRotationForControlledItems() {
+    for (let item of [...canvas.tokens.controlled, ...canvas.tiles.controlled]) {
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.DEBUG, `Updating document rotation for controlled item.`);
+      updateTileAndTokenDocumentRotation(item);
+    }
+  }
+
+  // Function to initialize event listeners
   function initializeEventListeners() {
     try {
-      // Add event listeners for 'keydown', 'keyup', and 'mousemove' events
       document.addEventListener('keydown', handleActivationKeyPressed);
       document.addEventListener('keyup', handleActivationKeyReleased);
       canvas.app.view.addEventListener('mousemove', handleMouseMove);
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Event listeners initialized.`, currentLogLevel);
-
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.INFO, `Event listeners initialized.`);
     } catch (error) {
-      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in initializeEventListeners: ${error}`, currentLogLevel);
+      Div4LoggerModule.log(Div4LoggerModule.LogLevel.ERROR, `Error in initializeEventListeners: ${error}`);
     }
   }
 
@@ -107,4 +129,4 @@ const TokenTileRotationController = (function() {
   };
 })();
 
-export default TokenTileRotationController; // This line is required to expose the module to other modules
+export default TokenTileRotationController;
