@@ -1,5 +1,8 @@
 const Div4LoggerModule = (function () {
 
+    // Define the module name
+    const ModuleName = "Div4.io Rotator";
+
     // Define ANSI escape codes for log colors
     const Color = {
         RESET: '\x1b[0m',
@@ -53,7 +56,7 @@ const Div4LoggerModule = (function () {
         const debugLine = `[${Color.GREY}${getCallerInfo()}${Color.RESET}]`;
         const timestamp = `[${Color.GREY}${new Date().toISOString()}${Color.RESET}]`;
         const logLevel = `[${LogLevelColor[level]}${level}${Color.RESET}]`;
-        const logMessage = `${Color.BG_BLACK}${timestamp} ${logLevel} ${debugLine} ${message}${Color.RESET}`;
+        const logMessage = `${ModuleName} | ${Color.BG_BLACK}${timestamp} ${logLevel} ${debugLine} ${message}${Color.RESET}`;
 
         // Output the log message to the console
         console.log(logMessage);
