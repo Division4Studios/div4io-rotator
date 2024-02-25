@@ -47,7 +47,7 @@ const Div4LoggerModule = (function () {
     }
 
     // Function to log messages with color-coded log level and sections
-    function log(level, message, currentLogLevel) {
+    function log(level, message, currentLogLevel = LogLevel.INFO) {
         if (findIndex(level) < findIndex(currentLogLevel)) {
             // Only log errors if the current log level allows it
             return;
@@ -62,20 +62,23 @@ const Div4LoggerModule = (function () {
         console.log(logMessage);
     }
 
-    // Function to get caller file and line number
     function getCallerInfo() {
         try {
             throw new Error('Get caller info');
         } catch (error) {
             // Split the stack trace into lines
             const stackLines = error.stack.split('\n');
+    
+            // Extract the line with caller info
+            const callerInfoLine = stackLines[3].trim();
 
-            // Extract the second line, which contains file and line number information
-            const callerInfo = stackLines[3].trim();
-            const lastIndexOfPath = callerInfo.lastIndexOf('/') + 1;
-            const lastIndexColon = callerInfo.lastIndexOf(':');
-
-            return callerInfo.slice(lastIndexOfPath, lastIndexColon);
+    
+            // Extract the file path and line number
+            const lastIndexOfPath = callerInfoLine.lastIndexOf('/') + 1;
+            const lastIndexColon = callerInfoLine.lastIndexOf(':');
+            const filePathAndLine = callerInfoLine.slice(lastIndexOfPath, lastIndexColon);
+    
+            return `${filePathAndLine}`;
         }
     }
 
