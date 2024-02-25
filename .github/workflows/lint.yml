@@ -1,8 +1,9 @@
 name: Lint Pull Request, Merge, and Push
 
 on:
-    push:
-    pull_request:
+  pull_request:
+    branches:
+      - dev
 
 
 jobs:
