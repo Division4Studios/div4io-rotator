@@ -75,6 +75,9 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
+      - name: Run ESLint
+        run: npx eslint src/
+
       - name: Webpack
         run: npm run build
 
@@ -143,3 +146,11 @@ jobs:
           artifacts: './module.json, ./module.zip'
           tag: ${{ github.event.release.tag_name }}
           body: ${{ github.event.release.body }}
+
+      # Publish the module to the FoundryVTT website.
+      - name: Publish Module to FoundryVTT Website
+        id: publish-to-foundry-website
+        uses: cs96and/FoundryVTT-release-package@v1
+        with:
+          package-token: ${{ secrets.PACKAGE_TOKEN }}
+          manifest-url: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.json
